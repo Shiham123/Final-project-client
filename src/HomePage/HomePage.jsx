@@ -1,5 +1,11 @@
+import SliderSection from '../Section/Slider/SliderSection';
+
 const HomePage = () => {
-  return <div className="max-w-screen-xl mx-auto">home page</div>;
+  return (
+    <div>
+      <SliderSection />
+    </div>
+  );
 };
 
 export default HomePage;

@@ -9,6 +9,8 @@ export default withMT({
       footerBgColorTwo: '#111827',
       footerBgColorThree: '#151515',
       fontColorOne: '#ffffff',
+      activeFontColor: '#EEFF25',
+      navbarBgColorOne: '#15151580',
     },
     fontFamily: {
       agbalumo: ['Agbalumo', 'sans-serif'],
