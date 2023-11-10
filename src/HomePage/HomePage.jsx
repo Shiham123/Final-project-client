@@ -1,11 +1,5 @@
-import FooterSection from '../Section/Footer/FooterSection';
-
 const HomePage = () => {
-  return (
-    <>
-      <FooterSection />
-    </>
-  );
+  return <div className="max-w-screen-xl mx-auto">home page</div>;
 };
 
 export default HomePage;
