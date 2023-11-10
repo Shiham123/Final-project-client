@@ -1,5 +1,10 @@
 const NavbarSection = () => {
-  return <div>this is navbar section</div>;
+  return (
+    <div>
+      <h1>src/Section/NavbarSection.jsx</h1>
+      <h1>Now i am code here</h1>
+    </div>
+  );
 };
 
 export default NavbarSection;

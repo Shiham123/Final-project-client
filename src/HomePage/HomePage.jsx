@@ -4,6 +4,7 @@ const HomePage = () => {
   return (
     <>
       <FooterSection />
+      <h1>now i am code here</h1>
     </>
   );
 };

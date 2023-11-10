@@ -13,7 +13,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: '/contact', element: <ContactPage /> },
     ],
-  },
+  }, // now i am code here // for this reason vs code is important
 ]);
 
 export default router;
