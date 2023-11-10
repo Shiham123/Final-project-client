@@ -1,5 +1,11 @@
+import FooterSection from '../Section/Footer/FooterSection';
+
 const HomePage = () => {
-  return <div>this is home page</div>;
+  return (
+    <>
+      <FooterSection />
+    </>
+  );
 };
 
 export default HomePage;
