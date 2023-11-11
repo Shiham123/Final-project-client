@@ -9,7 +9,8 @@ const PopularMenuSection = (props) => {
   const [jsonData, setJsonData] = useState([]);
   const customData = useJson();
 
-  const { category, buttonText } = props;
+  const { category, buttonText, sectionTitle } = props;
+
   const { menuData } = customData;
 
   useEffect(() => {
@@ -19,7 +20,11 @@ const PopularMenuSection = (props) => {
 
   return (
     <section className="mb-4">
-      <SectionTitle heading={"TODAY'S OFFER"} subHeading="---Don't miss---" />
+      {sectionTitle ? (
+        <SectionTitle heading={"TODAY'S OFFER"} subHeading="---Don't miss---" />
+      ) : (
+        ''
+      )}
 
       <div className="grid grid-cols-2 px-[5rem]">
         {jsonData.map((item) => {
@@ -45,6 +50,7 @@ const PopularMenuSection = (props) => {
 PopularMenuSection.propTypes = {
   category: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
+  sectionTitle: PropTypes.bool.isRequired,
 };
 
 export default PopularMenuSection;
