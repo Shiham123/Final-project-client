@@ -36,7 +36,7 @@ const Category = () => {
   }, []);
   return (
     <>
-      <section className="my-[10rem]">
+      <section className="my-[10rem] max-w-screen-xl mx-auto">
         <SectionTitle
           heading="order online"
           subHeading={'---From 11:00am to 10:00pm---'}

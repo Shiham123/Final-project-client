@@ -4,8 +4,8 @@ import PopularMenuSection from '../../Section/Menu/PopularMenuSection';
 import FeatureSection from '../../Section/Featured/FeatureSection';
 import TestimonialSection from '../../Section/Testimonial/TestimonialSection';
 import { Helmet } from 'react-helmet-async';
+import BistroBossSection from '../../Section/BistroBoss/BistroBossSection';
 
-// import
 const HomePage = () => {
   return (
     <div>
@@ -14,6 +14,7 @@ const HomePage = () => {
       </Helmet>
       <SliderSection />
       <Category />
+      <BistroBossSection />
       <PopularMenuSection />
       <FeatureSection />
       <TestimonialSection />

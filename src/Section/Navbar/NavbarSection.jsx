@@ -58,9 +58,6 @@ const NavbarSection = () => {
                 </NavLink>
               </h1>
               <h1 className="font-inter text-[20px] text-black uppercase font-bold">
-                Our Menu
-              </h1>
-              <h1 className="font-inter text-[20px] text-black uppercase font-bold">
                 Our Shop
               </h1>
               <img src={carIcon} width={40} alt="" />
@@ -97,9 +94,6 @@ const NavbarSection = () => {
             </h1>
             <h1 className="font-inter text-[20px] uppercase font-bold">
               DASHBOARD
-            </h1>
-            <h1 className="font-inter text-[20px] uppercase font-bold">
-              Our Menu
             </h1>
             <h1 className="font-inter text-[20px] uppercase font-bold cursor-pointer">
               <NavLink
@@ -145,9 +139,6 @@ const NavbarSection = () => {
                 </h1>
                 <h1 className="font-inter text-[20px] text-black uppercase font-bold">
                   DASHBOARD
-                </h1>
-                <h1 className="font-inter text-[20px] text-black uppercase font-bold">
-                  Our Menu
                 </h1>
                 <h1 className="font-inter text-[20px] text-black uppercase font-bold">
                   Our Menu
