@@ -26,7 +26,7 @@ const PopularMenuSection = (props) => {
         ''
       )}
 
-      <div className="grid grid-cols-2 px-[5rem]">
+      <div className="flex flex-col justify-center items-center lg:grid lg:grid-cols-2 px-0 lg:px-[5rem] md:px-[1rem]">
         {jsonData.map((item) => {
           const { _id } = item;
           return (
