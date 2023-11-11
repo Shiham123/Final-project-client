@@ -11,6 +11,8 @@ export default withMT({
       fontColorOne: '#ffffff',
       activeFontColor: '#EEFF25',
       navbarBgColorOne: '#15151580',
+      borderColorOne: '#E8E8E8',
+      subTitleColor: '#D99904',
     },
     fontFamily: {
       agbalumo: ['Agbalumo', 'sans-serif'],
