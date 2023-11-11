@@ -11,7 +11,7 @@ const FeatureSection = () => {
       <div className="feature-background">
         <div className="blur-background"></div>
       </div>
-      <div className="content-container">
+      <div className="content-container py-[10rem]">
         <SectionTitle
           heading="Featured item"
           subHeading="check it out"
@@ -30,7 +30,9 @@ const FeatureSection = () => {
               Eaque repellat recusandae ad laudantium tempore consequatur
               consequuntur omnis ullam maxime tenetur
             </p>
-            <button className="btn">Open now</button>
+            <button className="bg-transparent text-white border-2 border-white px-4 py-2 border-b-[1rem] rounded-lg">
+              Open now
+            </button>
           </div>
         </div>
       </div>

@@ -9,8 +9,30 @@ import imgThree from '../../assets/home/slide3.jpg';
 import imgFour from '../../assets/home/slide4.jpg';
 import imgFive from '../../assets/home/slide5.jpg';
 import SectionTitle from '../../SubSection/SectionTitle';
+import { useEffect, useState } from 'react';
 
 const Category = () => {
+  const [sliderCount, setSliderCount] = useState(4);
+
+  useEffect(() => {
+    const sliderSize = () => {
+      if (window.innerWidth < 640) {
+        setSliderCount(1);
+      } else if (window.innerWidth < 1024) {
+        setSliderCount(2);
+      } else {
+        setSliderCount(4);
+      }
+    };
+
+    sliderSize();
+
+    window.addEventListener('resize', sliderSize);
+
+    return () => {
+      window.removeEventListener('resize', sliderSize);
+    };
+  }, []);
   return (
     <>
       <section className="my-[10rem]">
@@ -19,7 +41,7 @@ const Category = () => {
           subHeading={'---From 11:00am to 10:00pm---'}
         ></SectionTitle>
         <Swiper
-          slidesPerView={4}
+          slidesPerView={sliderCount}
           spaceBetween={1}
           centeredSlides={true}
           pagination={{

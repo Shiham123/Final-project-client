@@ -12,6 +12,7 @@
     background-position: center;
     background-repeat: no-repeat;
     filter: blur(1rem) brightness(50%);
+    background-attachment: fixed;
 
     .blur-background {
       width: 100%;
