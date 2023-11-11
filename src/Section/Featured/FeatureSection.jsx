@@ -8,7 +8,10 @@ const FeatureSection = () => {
 
   return (
     <section className="my-[10rem] feature-item">
-      <div>
+      <div className="feature-background">
+        <div className="blur-background"></div>
+      </div>
+      <div className="content-container">
         <SectionTitle
           heading="Featured item"
           subHeading="check it out"
