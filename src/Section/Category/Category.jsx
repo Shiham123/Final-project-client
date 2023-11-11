@@ -1,5 +1,6 @@
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -41,16 +42,17 @@ const Category = () => {
           subHeading={'---From 11:00am to 10:00pm---'}
         ></SectionTitle>
         <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
           slidesPerView={sliderCount}
-          spaceBetween={1}
           centeredSlides={true}
           pagination={{
             clickable: true,
           }}
-          modules={[Pagination]}
           className="mySwiper"
+          onSlideChange={() => console.log('slide change')}
+          onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide>
+          <SwiperSlide style={{ margin: '10rem' }}>
             <div className="relative">
               <img src={imgOne} alt="" className="rounded-lg" />
               <h3 className="text-4xl uppercase absolute bottom-[2rem] left-[4rem] font-inter text-fontColorOne">

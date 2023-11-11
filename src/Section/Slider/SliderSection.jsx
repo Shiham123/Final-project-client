@@ -8,16 +8,30 @@ import imgFour from '../../assets/home/04.jpg';
 import imgFive from '../../assets/home/05.png';
 import imgSix from '../../assets/home/06.png';
 
+import './sliderSection.scss';
+
 const SliderSection = () => {
   return (
     <div>
       <Carousel showArrows={false} showStatus={false}>
-        <img src={imgOne} alt="" />
-        <img src={imgTwo} alt="" />
-        <img src={imgThree} alt="" />
-        <img src={imgFour} alt="" />
-        <img src={imgFive} alt="" />
-        <img src={imgSix} alt="" />
+        <div>
+          <img src={imgOne} alt="" />
+        </div>
+        <div>
+          <img src={imgTwo} alt="" />
+        </div>
+        <div>
+          <img src={imgThree} alt="" />
+        </div>
+        <div>
+          <img src={imgFour} alt="" />
+        </div>
+        <div>
+          <img src={imgFive} alt="" />
+        </div>
+        <div>
+          <img src={imgSix} alt="" />
+        </div>
       </Carousel>
     </div>
   );
