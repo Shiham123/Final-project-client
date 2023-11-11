@@ -1,31 +1,33 @@
 import PropTypes from 'prop-types';
+import { Parallax } from 'react-parallax';
 
 const CoverSection = (props) => {
-  const { img, title } = props;
+  const { heading, para, img } = props;
   return (
-    <div
-      className="hero h-[750px]"
-      style={{ backgroundImage: `url("${img}")` }}
+    <Parallax
+      blur={{ min: -15, max: 15 }}
+      bgImage={img}
+      bgImageAlt="the dog"
+      strength={-200}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
-      <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">{title}</h1>
-          <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+      <div className="flex flex-col justify-center items-center px-[5rem] py-[10rem]">
+        <div className="p-[10rem] w-2/3 flex flex-col justify-center items-center gap-8 bg-navbarBgColorOne rounded-lg">
+          <h1 className="font-agbalumo text-3xl md:text-4xl lg:text-5xl text-white uppercase">
+            {heading}
+          </h1>
+          <p className="font-agbalumo text-xl md:text-2xl lg:text-3xl text-white">
+            {para}
           </p>
-          <button className="btn btn-primary">Get Started</button>
         </div>
       </div>
-    </div>
+    </Parallax>
   );
 };
 
 CoverSection.propTypes = {
+  heading: PropTypes.string.isRequired,
+  para: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
 };
 
 export default CoverSection;
