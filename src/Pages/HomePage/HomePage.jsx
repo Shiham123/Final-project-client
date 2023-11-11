@@ -17,7 +17,7 @@ const HomePage = () => {
       <SliderSection />
       <Category />
       <BistroBossSection />
-      <PopularMenuSection />
+      <PopularMenuSection category="popular" buttonText="View Full menu" />
       <ContactNumberSection />
       <RecommendedSection />
       <FeatureSection />

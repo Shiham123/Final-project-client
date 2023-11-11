@@ -1,9 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import CoverSection from '../../Section/Cover/CoverSection';
 import imgOne from '../../assets/menu/banner3.jpg';
-
-// import MenuImg from '../../assets/menu/banner3.jpg';
-// import PopularMenuSection from '../../Section/Menu/PopularMenuSection';
+import PopularMenuSection from '../../Section/Menu/PopularMenuSection';
 
 const MenuPage = () => {
   return (
@@ -16,7 +14,10 @@ const MenuPage = () => {
         para="Would you like to try a dish?"
         img={imgOne}
       />
-      {/* <PopularMenuSection /> */}
+      <PopularMenuSection
+        category="offered"
+        buttonText="ORDER YOUR FAVOURITE FOOD"
+      />
     </div>
   );
 };
