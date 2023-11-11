@@ -13,6 +13,8 @@ export default withMT({
       navbarBgColorOne: '#15151580',
       borderColorOne: '#E8E8E8',
       subTitleColor: '#D99904',
+      cardBgColor: '#F3F3F3',
+      buttonColorOne: '#BB8506',
     },
     fontFamily: {
       agbalumo: ['Agbalumo', 'sans-serif'],

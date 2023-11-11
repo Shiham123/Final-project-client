@@ -17,20 +17,20 @@ const FeatureSection = () => {
           subHeading="check it out"
           isCheck={isCheck}
         />
-        <div className="flex justify-center items-center py-8 px-[10rem] gap-8 text-fontColorOne">
+        <div className="flex justify-center items-center py-8 px-[14rem] gap-8 text-fontColorOne">
           <div>
             <img src={featureBgImg} className="rounded-lg" alt="" />
           </div>
           <div>
-            <p>Aug 20, 2029</p>
-            <p className="uppercase">WHERE CAN I GET SOME?</p>
-            <p>
+            <p className="font-inter p-2">Aug 20, 2029</p>
+            <p className="uppercase font-inter p-2">WHERE CAN I GET SOME?</p>
+            <p className="font-inter p-2">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
               voluptate facere, deserunt dolores maiores quod nobis quas quasi.
               Eaque repellat recusandae ad laudantium tempore consequatur
               consequuntur omnis ullam maxime tenetur
             </p>
-            <button className="bg-transparent text-white border-2 border-white px-4 py-2 border-b-[1rem] rounded-lg">
+            <button className="bg-transparent text-white border-b-4 border-white rounded-lg p-4">
               Open now
             </button>
           </div>

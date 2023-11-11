@@ -12,8 +12,8 @@ const MenuItems = (props) => {
         alt=""
       />
       <div>
-        <h3>{name}-----------</h3>
-        <p>{recipe}</p>
+        <h3 className="font-agbalumo">{name}-----------</h3>
+        <p className="font-inter">{recipe}</p>
       </div>
       <p className="text-subTitleColor">${price}</p>
     </div>
