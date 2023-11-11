@@ -1,6 +1,7 @@
 import { FcImageFile, FcMenu } from 'react-icons/fc';
 
 import carIcon from '../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png';
+import { NavLink } from 'react-router-dom';
 
 const NavbarSection = () => {
   return (
@@ -22,8 +23,19 @@ const NavbarSection = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <div className="flex flex-col gap-4">
-              <h1 className="font-inter text-[20px] text-black uppercase font-bold">
-                Home
+              <h1 className="font-inter text-[20px] text-black uppercase font-bold cursor-pointer">
+                <NavLink
+                  to={`/`}
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? 'isPending'
+                      : isActive
+                      ? 'text-activeFontColor'
+                      : ''
+                  }
+                >
+                  Home
+                </NavLink>
               </h1>
               <h1 className="font-inter text-[20px] text-black uppercase font-bold">
                 CONTACT us
@@ -31,8 +43,19 @@ const NavbarSection = () => {
               <h1 className="font-inter text-[20px] text-black uppercase font-bold">
                 DASHBOARD
               </h1>
-              <h1 className="font-inter text-[20px] text-black uppercase font-bold">
-                Our Menu
+              <h1 className="font-inter text-[20px] text-black uppercase font-bold cursor-pointer">
+                <NavLink
+                  to={`/menu`}
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? 'pending'
+                      : isActive
+                      ? 'text-activeFontColor'
+                      : ''
+                  }
+                >
+                  Our Menu
+                </NavLink>
               </h1>
               <h1 className="font-inter text-[20px] text-black uppercase font-bold">
                 Our Menu
@@ -55,7 +78,20 @@ const NavbarSection = () => {
       <div className="navbar-end">
         <div className="hidden md:hidden lg:inline-block">
           <div className="flex gap-4">
-            <h1 className="font-inter text-[20px] uppercase font-bold">Home</h1>
+            <h1 className="font-inter text-[20px] uppercase font-bold">
+              <NavLink
+                to={'/'}
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? 'isPending'
+                    : isActive
+                    ? 'text-activeFontColor'
+                    : ''
+                }
+              >
+                Home
+              </NavLink>
+            </h1>
             <h1 className="font-inter text-[20px] uppercase font-bold">
               CONTACT us
             </h1>
@@ -65,8 +101,15 @@ const NavbarSection = () => {
             <h1 className="font-inter text-[20px] uppercase font-bold">
               Our Menu
             </h1>
-            <h1 className="font-inter text-[20px] uppercase font-bold">
-              Our Menu
+            <h1 className="font-inter text-[20px] uppercase font-bold cursor-pointer">
+              <NavLink
+                to={`/menu`}
+                className={({ isActive, isPending }) =>
+                  isPending ? '' : isActive ? 'text-activeFontColor' : ''
+                }
+              >
+                Our Menu
+              </NavLink>
             </h1>
             <h1 className="font-inter text-[20px] uppercase font-bold">
               Our Shop
