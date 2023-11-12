@@ -1,3 +1,10 @@
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  // LoadCanvasTemplateNoReload,
+  validateCaptcha,
+} from 'react-simple-captcha';
+
 import loginStyle from './login.module.scss';
 import loginImg from '../../assets/others/authentication1.png';
 
@@ -6,8 +13,15 @@ import {
   AiOutlineGithub,
   AiOutlineGoogle,
 } from 'react-icons/ai';
+import { useEffect, useRef, useState } from 'react';
 
 const LoginPage = () => {
+  const captchaRef = useRef(null);
+  const [disabledBtn, setDisabledBtn] = useState(true);
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -16,6 +30,16 @@ const LoginPage = () => {
     const submitInfo = { email, password };
     console.log(submitInfo);
   };
+
+  const handleValidateCaptcha = () => {
+    const value = captchaRef.current.value;
+    if (validateCaptcha(value)) {
+      setDisabledBtn(false);
+    } else {
+      setDisabledBtn(true);
+    }
+  };
+
   return (
     <div className={`${loginStyle.login} p-24`}>
       <div className="flex flex-row justify-center items-center rounded-lg shadow-lg">
@@ -55,18 +79,25 @@ const LoginPage = () => {
               required
             />
 
-            <input
-              type="text"
-              className="p-4 rounded-lg outline-none border-none font-inter text-[20px]"
-              placeholder="captcha"
-            />
+            <p className="text-blue-900 font-inter uppercase text-xl">Reload</p>
+            <label htmlFor="">
+              <LoadCanvasTemplate />
+            </label>
 
             <input
               type="text"
               className="p-4 rounded-lg outline-none border-none font-inter text-[20px]"
-              placeholder="type here"
+              placeholder="type here captcha"
+              ref={captchaRef}
             />
             <button
+              className="btn btn-outline btn-xs"
+              onClick={handleValidateCaptcha}
+            >
+              Validate captcha
+            </button>
+            <button
+              disabled={disabledBtn}
               type="submit"
               className="bg-[#d1a054b3] p-4 w-full my-8 rounded-lg text-white font-bold font-inter"
             >
