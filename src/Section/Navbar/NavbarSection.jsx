@@ -58,7 +58,18 @@ const NavbarSection = () => {
                 </NavLink>
               </h1>
               <h1 className="font-inter text-[20px] text-black uppercase font-bold">
-                Our Shop
+                <NavLink
+                  to={'order'}
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? 'isPending'
+                      : isActive
+                      ? 'text-activeFontColor'
+                      : ''
+                  }
+                >
+                  Our Shop
+                </NavLink>
               </h1>
               <img src={carIcon} width={40} alt="" />
               <div className="flex justify-center items-center gap-4">
@@ -106,7 +117,18 @@ const NavbarSection = () => {
               </NavLink>
             </h1>
             <h1 className="font-inter text-[20px] uppercase font-bold">
-              Our Shop
+              <NavLink
+                to={'order'}
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? 'isPending'
+                    : isActive
+                    ? 'text-activeFontColor'
+                    : ''
+                }
+              >
+                Our Shop
+              </NavLink>
             </h1>
             <img src={carIcon} width={40} alt="" />
             <div className="flex justify-center items-center gap-4">
@@ -141,10 +163,28 @@ const NavbarSection = () => {
                   DASHBOARD
                 </h1>
                 <h1 className="font-inter text-[20px] text-black uppercase font-bold">
-                  Our Menu
+                  <NavLink
+                    to={'order'}
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? 'isPending'
+                        : isActive
+                        ? 'text-activeFontColor'
+                        : ''
+                    }
+                  >
+                    Our Order
+                  </NavLink>
                 </h1>
                 <h1 className="font-inter text-[20px] text-black uppercase font-bold">
-                  Our Shop
+                  <NavLink
+                    to={`/menu`}
+                    className={({ isActive, isPending }) =>
+                      isPending ? '' : isActive ? 'text-activeFontColor' : ''
+                    }
+                  >
+                    Our Shop
+                  </NavLink>
                 </h1>
                 <img src={carIcon} width={40} alt="" />
                 <div className="flex justify-center items-center gap-4">

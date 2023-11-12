@@ -4,6 +4,7 @@ import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import HomePage from '../Pages/HomePage/HomePage';
 import ContactPage from '../Pages/Contact/ContactPage';
 import MenuPage from '../Pages/MenuPage/MenuPage';
+import OrderPage from '../Pages/Order/OrderPage';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: '/contact', element: <ContactPage /> },
       { path: '/menu', element: <MenuPage /> },
+      { path: '/order', element: <OrderPage /> },
     ],
   },
 ]);
