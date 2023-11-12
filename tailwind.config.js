@@ -16,6 +16,7 @@ export default withMT({
       cardBgColor: '#F3F3F3',
       buttonColorOne: '#BB8506',
       testimonialColor: '#CD9003',
+      formTextColor : '#D1A054'
     },
     fontFamily: {
       agbalumo: ['Agbalumo', 'sans-serif'],

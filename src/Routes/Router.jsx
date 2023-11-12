@@ -5,6 +5,8 @@ import HomePage from '../Pages/HomePage/HomePage';
 import ContactPage from '../Pages/Contact/ContactPage';
 import MenuPage from '../Pages/MenuPage/MenuPage';
 import OrderPage from '../Pages/Order/OrderPage';
+import LoginPage from '../Pages/Login/LoginPage';
+import SecondLayout from '../Layout/SecondLayout';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,12 @@ const router = createBrowserRouter([
       { path: '/order', element: <OrderPage /> },
       { path: '/order/:category', element: <OrderPage /> },
     ],
+  },
+  {
+    path: '/login',
+    element: <SecondLayout />,
+    errorElement: <ErrorPage />,
+    children: [{ index: true, element: <LoginPage /> }],
   },
 ]);
 

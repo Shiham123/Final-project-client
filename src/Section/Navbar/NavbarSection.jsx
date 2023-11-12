@@ -74,7 +74,14 @@ const NavbarSection = () => {
               <img src={carIcon} width={40} alt="" />
               <div className="flex justify-center items-center gap-4">
                 <p className="font-inter text-[20px] uppercase font-bold">
-                  Person
+                  <NavLink
+                    to={'/login'}
+                    className={({ isActive, isPending }) =>
+                      isPending ? 'isPending' : isActive ? 'isActive' : ''
+                    }
+                  >
+                    Login/Register
+                  </NavLink>
                 </p>
                 <FcImageFile />
               </div>
@@ -133,7 +140,14 @@ const NavbarSection = () => {
             <img src={carIcon} width={40} alt="" />
             <div className="flex justify-center items-center gap-4">
               <p className="font-inter text-[20px] uppercase font-bold">
-                Person
+                <NavLink
+                  to={'/login'}
+                  className={({ isActive, isPending }) =>
+                    isPending ? 'isPending' : isActive ? 'isActive' : ''
+                  }
+                >
+                  Login/Register
+                </NavLink>
               </p>
               <FcImageFile />
             </div>
@@ -189,7 +203,14 @@ const NavbarSection = () => {
                 <img src={carIcon} width={40} alt="" />
                 <div className="flex justify-center items-center gap-4">
                   <p className="font-inter text-[20px] uppercase font-bold">
-                    Person
+                    <NavLink
+                      to={'/login'}
+                      className={({ isActive, isPending }) =>
+                        isPending ? 'isPending' : isActive ? 'isActive' : ''
+                      }
+                    >
+                      Login/Register
+                    </NavLink>
                   </p>
                   <FcImageFile />
                 </div>
