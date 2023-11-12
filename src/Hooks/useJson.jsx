@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const useJson = () => {
@@ -6,21 +7,21 @@ const useJson = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch('/menu.json')
-      .then((response) => response.json())
-      .then((data) => {
-        setMenuData(data);
+    axios
+      .get('http://localhost:5000/menu')
+      .then((response) => {
+        setMenuData(response.data);
         setLoading(true);
       })
       .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
-    fetch('/reviews.json')
-      .then((response) => response.json())
-      .then((data) => {
-        setReviews(data);
-        setLoading(false);
+    axios
+      .get('http://localhost:5000/reviews')
+      .then((response) => {
+        setReviews(response.data);
+        setLoading(true);
       })
       .catch((error) => console.log(error));
   }, []);
