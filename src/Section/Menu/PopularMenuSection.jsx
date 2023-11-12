@@ -4,6 +4,7 @@ import useJson from '../../Hooks/useJson';
 
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const PopularMenuSection = (props) => {
   const [jsonData, setJsonData] = useState([]);
@@ -38,9 +39,11 @@ const PopularMenuSection = (props) => {
       </div>
       <div className="flex flex-col justify-center items-center">
         {buttonText && (
-          <button className="text-footerBgColorOne font-inter text-[20px] uppercase my-[3rem] border-b-4 border-footerBgColorOne rounded-lg p-4">
-            {buttonText}
-          </button>
+          <Link to={`/order/${category}`}>
+            <button className="text-footerBgColorOne font-inter text-[20px] uppercase my-[3rem] border-b-4 border-footerBgColorOne rounded-lg p-4">
+              {buttonText}
+            </button>
+          </Link>
         )}
       </div>
     </section>

@@ -76,6 +76,8 @@ const MenuPage = () => {
         buttonText="ORDER YOUR FAVOURITE FOOD"
         sectionTitle={false}
       />
+
+      {/* section six */}
     </div>
   );
 };

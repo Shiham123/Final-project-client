@@ -6,9 +6,18 @@ import OrderImg from '../../assets/shop/banner2.jpg';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import PerOrderSection from './PerOrderSection';
+import { useParams } from 'react-router-dom';
 
 const OrderPage = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const params = useParams();
+
+  const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
+  const { category } = params;
+  console.log(category);
+  const initialIndexCategory = categories.indexOf(category);
+  console.log(initialIndexCategory);
+
+  const [tabIndex, setTabIndex] = useState(initialIndexCategory);
   return (
     <div>
       <Helmet>
