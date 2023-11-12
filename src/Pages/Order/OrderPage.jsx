@@ -12,10 +12,9 @@ const OrderPage = () => {
   const params = useParams();
 
   const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
-  const { category } = params;
-  console.log(category);
+  const category = params.category || 'salad';
+
   const initialIndexCategory = categories.indexOf(category);
-  console.log(initialIndexCategory);
 
   const [tabIndex, setTabIndex] = useState(initialIndexCategory);
   return (
