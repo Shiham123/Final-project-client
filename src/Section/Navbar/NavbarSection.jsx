@@ -50,7 +50,18 @@ const NavbarSection = () => {
                 </NavLink>
               </h1>
               <h1 className="font-inter text-[20px] text-black uppercase font-bold">
-                CONTACT us
+                <NavLink
+                  to={'/contact'}
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? 'isPending'
+                      : isActive
+                      ? 'text-activeFontColor'
+                      : ''
+                  }
+                >
+                  CONTACT us
+                </NavLink>
               </h1>
               <h1 className="font-inter text-[20px] text-black uppercase font-bold">
                 DASHBOARD
@@ -120,7 +131,18 @@ const NavbarSection = () => {
               </NavLink>
             </h1>
             <h1 className="font-inter text-[20px] uppercase font-bold">
-              CONTACT us
+              <NavLink
+                to={'/contact'}
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? 'isPending'
+                    : isActive
+                    ? 'text-activeFontColor'
+                    : ''
+                }
+              >
+                CONTACT us
+              </NavLink>
             </h1>
             <h1 className="font-inter text-[20px] uppercase font-bold">
               DASHBOARD
@@ -199,7 +221,18 @@ const NavbarSection = () => {
                   Home
                 </h1>
                 <h1 className="font-inter text-[20px] text-black uppercase font-bold">
-                  CONTACT us
+                  <NavLink
+                    to={'/contact'}
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? 'isPending'
+                        : isActive
+                        ? 'text-activeFontColor'
+                        : ''
+                    }
+                  >
+                    CONTACT us
+                  </NavLink>
                 </h1>
                 <h1 className="font-inter text-[20px] text-black uppercase font-bold">
                   DASHBOARD

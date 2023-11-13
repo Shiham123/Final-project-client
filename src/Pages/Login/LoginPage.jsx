@@ -111,9 +111,12 @@ const LoginPage = () => {
             {/* <input
               disabled={false}
               type="submit"
-              value="Sign In"
-              className="bg-[#d1a054b3] p-4 w-full my-8 rounded-lg text-white font-bold font-inter"
+              value="Sign"
+              className="bg-[#d1a054b3] p-4 w-full my-8 rounded-lg text-white font-bold font-inter cursor-pointer"
             /> */}
+            {/* {disabledBtn
+              ? console.log(disabledBtn, 'true')
+              : console.log(disabledBtn, 'false')} */}
             <button
               disabled={disabledBtn}
               type="submit"

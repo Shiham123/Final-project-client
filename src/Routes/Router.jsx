@@ -8,6 +8,7 @@ import OrderPage from '../Pages/Order/OrderPage';
 import LoginPage from '../Pages/Login/LoginPage';
 import SecondLayout from '../Layout/SecondLayout';
 import RegisterPage from '../Pages/Register/RegisterPage';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: '/contact', element: <ContactPage /> },
+      {
+        path: '/contact',
+        element: (
+          <PrivateRoute>
+            <ContactPage />
+          </PrivateRoute>
+        ),
+      },
       { path: '/menu', element: <MenuPage /> },
       { path: '/order', element: <OrderPage /> },
       { path: '/order/:category', element: <OrderPage /> },
