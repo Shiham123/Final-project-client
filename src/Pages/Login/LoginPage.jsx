@@ -16,7 +16,7 @@ import {
 import swal from 'sweetalert';
 
 import { useContext, useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../Context/context';
 
 const LoginPage = () => {
@@ -25,6 +25,9 @@ const LoginPage = () => {
   const formRef = useRef(null);
   const { loginEmailPassword } = useContext(AppContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from.pathname;
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -42,7 +45,7 @@ const LoginPage = () => {
         formRef.current.reset();
         swal('Good job!', 'You clicked the button!', 'success');
 
-        navigate('/');
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
