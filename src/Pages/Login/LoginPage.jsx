@@ -1,7 +1,6 @@
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  // LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from 'react-simple-captcha';
 
@@ -13,11 +12,14 @@ import {
   AiOutlineGithub,
   AiOutlineGoogle,
 } from 'react-icons/ai';
+
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const captchaRef = useRef(null);
   const [disabledBtn, setDisabledBtn] = useState(true);
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -105,7 +107,10 @@ const LoginPage = () => {
             </button>
           </form>
           <p className="font-inter text-formTextColor text-[20px]">
-            New here? <span>Create a New Account</span>
+            New here?{' '}
+            <Link to={'/register'} className="cursor-pointer">
+              <span>Create a New Account</span>
+            </Link>
           </p>
           <p className="font-inter text-[#444] text-[20px] w-full text-center py-4">
             Or sign in with

@@ -7,6 +7,7 @@ import MenuPage from '../Pages/MenuPage/MenuPage';
 import OrderPage from '../Pages/Order/OrderPage';
 import LoginPage from '../Pages/Login/LoginPage';
 import SecondLayout from '../Layout/SecondLayout';
+import RegisterPage from '../Pages/Register/RegisterPage';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [{ index: true, element: <LoginPage /> }],
   },
+  { path: '/register', element: <RegisterPage /> },
 ]);
 
 export default router;
