@@ -2,8 +2,20 @@ import { FcImageFile, FcMenu } from 'react-icons/fc';
 
 import carIcon from '../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png';
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from '../../Context/context';
 
 const NavbarSection = () => {
+  const { user, logOut } = useContext(AppContext);
+
+  const userName = user?.displayName;
+
+  const logoutUser = () => {
+    logOut()
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="navbar fixed bg-navbarBgColorOne text-fontColorOne z-10 px-[2rem] py-5">
       <div className="navbar-start">
@@ -139,16 +151,32 @@ const NavbarSection = () => {
             </h1>
             <img src={carIcon} width={40} alt="" />
             <div className="flex justify-center items-center gap-4">
-              <p className="font-inter text-[20px] uppercase font-bold">
-                <NavLink
-                  to={'/login'}
-                  className={({ isActive, isPending }) =>
-                    isPending ? 'isPending' : isActive ? 'isActive' : ''
-                  }
-                >
-                  Login/Register
-                </NavLink>
-              </p>
+              {user ? (
+                <div>
+                  <p
+                    onClick={logoutUser}
+                    className="font-inter text-[20px] uppercase font-bold cursor-pointer"
+                  >
+                    Logout
+                  </p>
+                  <p>{userName}</p>
+                </div>
+              ) : (
+                <p className="font-inter text-[20px] uppercase font-bold">
+                  <NavLink
+                    to={'/login'}
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? 'isPending'
+                        : isActive
+                        ? 'text-activeFontColor'
+                        : ''
+                    }
+                  >
+                    Login/Register
+                  </NavLink>
+                </p>
+              )}
               <FcImageFile />
             </div>
           </div>

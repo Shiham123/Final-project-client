@@ -13,12 +13,18 @@ import {
   AiOutlineGoogle,
 } from 'react-icons/ai';
 
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
+
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppContext } from '../../Context/context';
 
 const LoginPage = () => {
   const captchaRef = useRef(null);
   const [disabledBtn, setDisabledBtn] = useState(true);
+  const formRef = useRef(null);
+  const { loginEmailPassword } = useContext(AppContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -29,8 +35,16 @@ const LoginPage = () => {
     const formData = new FormData(event.target);
     const email = formData.get('email');
     const password = formData.get('password');
-    const submitInfo = { email, password };
-    console.log(submitInfo);
+
+    loginEmailPassword(email, password)
+      .then((result) => {
+        console.log(result);
+        formRef.current.reset();
+        swal('Good job!', 'You clicked the button!', 'success');
+
+        navigate('/');
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleValidateCaptcha = () => {
@@ -50,8 +64,9 @@ const LoginPage = () => {
         </div>
         <div className="p-[5rem]">
           <form
-            className="flex flex-col flex-shrink-0 gap-12"
+            className="flex flex-col flex-shrink-0 gap-4"
             onSubmit={handleSubmit}
+            ref={formRef}
           >
             <label
               htmlFor=""
@@ -87,17 +102,18 @@ const LoginPage = () => {
             </label>
 
             <input
+              onBlur={handleValidateCaptcha}
               type="text"
               className="p-4 rounded-lg outline-none border-none font-inter text-[20px]"
               placeholder="type here captcha"
               ref={captchaRef}
             />
-            <button
-              className="btn btn-outline btn-xs"
-              onClick={handleValidateCaptcha}
-            >
-              Validate captcha
-            </button>
+            {/* <input
+              disabled={false}
+              type="submit"
+              value="Sign In"
+              className="bg-[#d1a054b3] p-4 w-full my-8 rounded-lg text-white font-bold font-inter"
+            /> */}
             <button
               disabled={disabledBtn}
               type="submit"
