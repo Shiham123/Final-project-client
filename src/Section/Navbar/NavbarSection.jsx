@@ -1,9 +1,10 @@
 import { FcImageFile, FcMenu } from 'react-icons/fc';
 
-import carIcon from '../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png';
 import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../../Context/context';
+
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 const NavbarSection = () => {
   const { user, logOut } = useContext(AppContext);
@@ -94,7 +95,6 @@ const NavbarSection = () => {
                   Our Shop
                 </NavLink>
               </h1>
-              <img src={carIcon} width={40} alt="" />
               <div className="flex justify-center items-center gap-4">
                 <p className="font-inter text-[20px] uppercase font-bold">
                   <NavLink
@@ -115,7 +115,7 @@ const NavbarSection = () => {
 
       <div className="navbar-end">
         <div className="hidden md:hidden lg:inline-block">
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <h1 className="font-inter text-[20px] uppercase font-bold">
               <NavLink
                 to={'/'}
@@ -171,7 +171,13 @@ const NavbarSection = () => {
                 Our Shop
               </NavLink>
             </h1>
-            <img src={carIcon} width={40} alt="" />
+            {/* Custom badge */}
+            <div className="relative">
+              <AiOutlineShoppingCart size={40} color="#EEFF25" />
+              <p className="absolute top-0 right-0 bg-black p-[2px] rounded-full text-sm font-inter">
+                0
+              </p>
+            </div>
             <div className="flex justify-center items-center gap-4">
               {user ? (
                 <div>
@@ -261,7 +267,6 @@ const NavbarSection = () => {
                     Our Shop
                   </NavLink>
                 </h1>
-                <img src={carIcon} width={40} alt="" />
                 <div className="flex justify-center items-center gap-4">
                   <p className="font-inter text-[20px] uppercase font-bold">
                     <NavLink

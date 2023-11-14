@@ -2,7 +2,11 @@ import PropTypes from 'prop-types';
 
 const PerOrderItem = (props) => {
   const { orderedData } = props;
-  const { name, recipe, image, price } = orderedData;
+  const { _id, name, recipe, image, price } = orderedData;
+
+  const addToCart = (id) => {
+    console.log(id);
+  };
 
   return (
     <div className="bg-cardBgColor h-full">
@@ -18,7 +22,10 @@ const PerOrderItem = (props) => {
         <p className="text-xl font-inter text-footerBgColorThree text-center py-4">
           {recipe}
         </p>
-        <button className="bg-borderColorOne p-4 text-xl rounded-lg border-b-4 border-b-buttonColorOne text-buttonColorOne hover:bg-footerBgColorOne duration-300">
+        <button
+          onClick={() => addToCart(_id)}
+          className="bg-borderColorOne p-4 text-xl rounded-lg border-b-4 border-b-buttonColorOne text-buttonColorOne hover:bg-footerBgColorOne duration-300"
+        >
           Add to Cart
         </button>
       </div>
