@@ -1,12 +1,38 @@
 import { FaTrash } from 'react-icons/fa';
 import useCart from '../../Hooks/useCart';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const CartPage = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  const axiosSecure = useAxiosSecure();
 
   const deleteFood = (id) => {
-    console.log(id);
+    Swal.fire({
+      title: 'Are you sure? Delete this food?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#D1A054',
+      cancelButtonColor: '#151515',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Your Food has been deleted.',
+          icon: 'success',
+        });
+
+        axiosSecure
+          .delete(`/carts/${id}`)
+          .then((response) => {
+            console.log(response);
+            refetch();
+          })
+          .catch((error) => console.log(error));
+      }
+    });
   };
 
   return (
