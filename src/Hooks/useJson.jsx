@@ -11,7 +11,7 @@ const useJson = () => {
       .get('http://localhost:5000/menu')
       .then((response) => {
         setMenuData(response.data);
-      setLoading(true);
+        setLoading(true);
       })
       .catch((error) => console.log(error));
   }, []);
