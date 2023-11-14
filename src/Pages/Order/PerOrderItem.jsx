@@ -4,6 +4,7 @@ import { AppContext } from '../../Context/context';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useCart from '../../Hooks/useCart';
 
 const PerOrderItem = (props) => {
   const { orderedData } = props;
@@ -14,6 +15,7 @@ const PerOrderItem = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
+  const [, refetch] = useCart();
 
   const addToCart = () => {
     if (email) {
@@ -38,6 +40,7 @@ const PerOrderItem = (props) => {
               showConfirmButton: false,
               timer: 1000,
             });
+            refetch();
           }
         })
         .catch((error) => console.log(error));
@@ -73,7 +76,7 @@ const PerOrderItem = (props) => {
           {recipe}
         </p>
         <button
-          onClick={() => addToCart()}
+          onClick={addToCart}
           className="bg-borderColorOne p-4 text-xl rounded-lg border-b-4 border-b-buttonColorOne text-buttonColorOne hover:bg-footerBgColorOne duration-300"
         >
           Add to Cart
