@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { AppContext } from '../../Context/context';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const PerOrderItem = (props) => {
   const { orderedData } = props;
@@ -12,10 +13,34 @@ const PerOrderItem = (props) => {
   const email = user?.email;
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure();
 
-  const addToCart = (id) => {
+  const addToCart = () => {
     if (email) {
-      console.log(id);
+      const cartItem = {
+        menuId: _id,
+        loggedInUser: email,
+        name,
+        price,
+        image,
+        recipe,
+      };
+
+      axiosSecure
+        .post('/carts', cartItem)
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.insertedId) {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'food added to item',
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          }
+        })
+        .catch((error) => console.log(error));
     } else {
       Swal.fire({
         title: 'Are you want to add food to your cart?',
@@ -48,7 +73,7 @@ const PerOrderItem = (props) => {
           {recipe}
         </p>
         <button
-          onClick={() => addToCart(_id)}
+          onClick={() => addToCart()}
           className="bg-borderColorOne p-4 text-xl rounded-lg border-b-4 border-b-buttonColorOne text-buttonColorOne hover:bg-footerBgColorOne duration-300"
         >
           Add to Cart
