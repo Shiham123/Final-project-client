@@ -9,6 +9,12 @@ import LoginPage from '../Pages/Login/LoginPage';
 import SecondLayout from '../Layout/SecondLayout';
 import RegisterPage from '../Pages/Register/RegisterPage';
 import PrivateRoute from './PrivateRoute';
+import DrawerLayout from '../Layout/DrawerLayout';
+import DashBroadPage from '../Pages/DashBroad/DashBroadPage';
+import CartPage from '../Pages/DashBroad/CartPage';
+import ManageItemPage from '../Pages/DashBroad/ManageItemPage';
+import BookingPage from '../Pages/DashBroad/BookingPage';
+import UserPage from '../Pages/DashBroad/UserPage';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +42,18 @@ const router = createBrowserRouter([
     children: [{ index: true, element: <LoginPage /> }],
   },
   { path: '/register', element: <RegisterPage /> },
+  {
+    path: '/dashBroad',
+    element: <DrawerLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { path: 'home', element: <DashBroadPage /> },
+      { path: 'cart', element: <CartPage /> },
+      { path: 'items', element: <ManageItemPage /> },
+      { path: 'booking', element: <BookingPage /> },
+      { path: 'user', element: <UserPage /> },
+    ],
+  },
 ]);
 
 export default router;

@@ -176,10 +176,12 @@ const NavbarSection = () => {
             </h1>
             {/* Custom badge */}
             <div className="relative">
-              <AiOutlineShoppingCart size={40} color="#EEFF25" />
-              <p className="absolute top-0 right-0 bg-black p-[2px] rounded-full text-sm font-inter">
-                {cartLength}
-              </p>
+              <NavLink to="/dashBroad/cart">
+                <AiOutlineShoppingCart size={40} color="#EEFF25" />
+                <p className="absolute top-0 right-0 bg-black p-[2px] rounded-full text-sm font-inter">
+                  {cartLength}
+                </p>
+              </NavLink>
             </div>
             <div className="flex justify-center items-center gap-4">
               {user ? (

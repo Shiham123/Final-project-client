@@ -23,6 +23,7 @@ export default withMT({
       roboto: ['Roboto Slab', 'sans-serif'],
       poppins: ['Poppins', 'sans-serif'],
       inter: ['Inter', 'sans-serif'],
+      cinzel: ['Cinzel', 'sans-serif'],
     },
   },
   plugins: [require('daisyui')],
