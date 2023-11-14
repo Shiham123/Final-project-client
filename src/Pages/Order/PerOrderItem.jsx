@@ -1,11 +1,36 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { AppContext } from '../../Context/context';
+import Swal from 'sweetalert2';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PerOrderItem = (props) => {
   const { orderedData } = props;
   const { _id, name, recipe, image, price } = orderedData;
 
+  const { user } = useContext(AppContext);
+  const email = user?.email;
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const addToCart = (id) => {
-    console.log(id);
+    if (email) {
+      console.log(id);
+    } else {
+      Swal.fire({
+        title: 'Are you want to add food to your cart?',
+        text: 'You have to be login!',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, login',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login', { state: { from: location } });
+        }
+      });
+    }
   };
 
   return (
