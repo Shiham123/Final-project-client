@@ -5,11 +5,14 @@ import { useContext } from 'react';
 import { AppContext } from '../../Context/context';
 
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import useCart from '../../Hooks/useCart';
 
 const NavbarSection = () => {
   const { user, logOut } = useContext(AppContext);
-
   const userName = user?.displayName;
+
+  const [cart] = useCart();
+  const cartLength = cart?.length;
 
   const logoutUser = () => {
     logOut()
@@ -175,7 +178,7 @@ const NavbarSection = () => {
             <div className="relative">
               <AiOutlineShoppingCart size={40} color="#EEFF25" />
               <p className="absolute top-0 right-0 bg-black p-[2px] rounded-full text-sm font-inter">
-                0
+                {cartLength}
               </p>
             </div>
             <div className="flex justify-center items-center gap-4">
