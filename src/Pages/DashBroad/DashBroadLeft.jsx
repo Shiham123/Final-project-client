@@ -3,6 +3,7 @@ import { ImSpoonKnife } from 'react-icons/im';
 import { NavLink } from 'react-router-dom';
 
 const DashBroadLeft = () => {
+  // TODO: get admin from database
   return (
     <>
       <div className="w-64 min-h-screen bg-formTextColor">

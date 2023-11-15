@@ -18,12 +18,14 @@ import swal from 'sweetalert';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../Context/context';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const LoginPage = () => {
+  const axiosPublic = useAxiosPublic();
   const captchaRef = useRef(null);
   const [disabledBtn, setDisabledBtn] = useState(true);
   const formRef = useRef(null);
-  const { loginEmailPassword } = useContext(AppContext);
+  const { loginEmailPassword, signInGoogle } = useContext(AppContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -57,6 +59,26 @@ const LoginPage = () => {
     } else {
       setDisabledBtn(true);
     }
+  };
+
+  const googleLogIn = () => {
+    signInGoogle()
+      .then((result) => {
+        console.log(result);
+
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+        };
+        axiosPublic
+          .post('/users', userInfo)
+          .then((response) => {
+            console.log(response.data);
+            navigate('/');
+          })
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -139,6 +161,7 @@ const LoginPage = () => {
           </p>
           <div className="flex w-full justify-center gap-[3rem]">
             <AiOutlineGoogle
+              onClick={googleLogIn}
               size={50}
               className="border-2 border-black rounded-full p-2 cursor-pointer"
             />

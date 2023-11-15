@@ -44,7 +44,11 @@ const router = createBrowserRouter([
   { path: '/register', element: <RegisterPage /> },
   {
     path: '/dashBroad',
-    element: <DrawerLayout />,
+    element: (
+      <PrivateRoute>
+        <DrawerLayout />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />,
     children: [
       { path: 'home', element: <DashBroadPage /> },

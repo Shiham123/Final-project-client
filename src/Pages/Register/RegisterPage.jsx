@@ -6,8 +6,11 @@ import { useContext, useRef } from 'react';
 import { AppContext } from '../../Context/context';
 
 import swal from 'sweetalert';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const RegisterPage = () => {
+  const axiosPublic = useAxiosPublic();
+
   const formRef = useRef(null);
   const {
     register,
@@ -31,6 +34,13 @@ const RegisterPage = () => {
           .then((result) => {
             console.log(result);
             formRef.current.reset();
+
+            const userInfo = { name, url, email };
+            axiosPublic
+              .post('/users', userInfo)
+              .then((response) => console.log(response.data))
+              .catch((error) => console.log(error));
+
             logOut()
               .then((result) => {
                 console.log(result);
