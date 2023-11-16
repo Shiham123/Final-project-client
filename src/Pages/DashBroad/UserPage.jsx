@@ -14,6 +14,34 @@ const UserPage = () => {
     },
   });
 
+  const addRole = (item) => {
+    const { _id, name } = item;
+    Swal.fire({
+      title: `Are you sure ${name} make admin`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#D1A054',
+      cancelButtonColor: '#151515',
+      confirmButtonText: 'Yes, Change',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Changed',
+          text: `You changed ${name} state`,
+          icon: 'success',
+        });
+
+        axiosSecure
+          .patch(`/users/admin/${_id}`)
+          .then((response) => {
+            console.log(response);
+            refetch();
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+  };
+
   const deleteUser = (id) => {
     Swal.fire({
       title: 'Are you sure? Delete this user?',
@@ -39,10 +67,6 @@ const UserPage = () => {
           .catch((error) => console.log(error));
       }
     });
-  };
-
-  const addRole = (id) => {
-    console.log(id);
   };
 
   return (
@@ -71,7 +95,7 @@ const UserPage = () => {
           <tbody>
             {/* row 1 */}
             {users.map((item, index) => {
-              const { _id, name, email } = item;
+              const { _id, name, email, role } = item;
               return (
                 <tr key={_id} className="hover py-4">
                   <th className="font-poppins text-xl text-footerBgColorThree font-semibold">
@@ -84,13 +108,19 @@ const UserPage = () => {
                     {email}
                   </td>
                   <td>
-                    <button>
-                      <FaUserFriends
-                        onClick={() => addRole(_id)}
-                        size={40}
-                        className="text-formTextColor hover:text-footerBgColorThree duration-300"
-                      />
-                    </button>
+                    {role === 'admin' ? (
+                      <p className="font-poppins text-xl text-formTextColor font-semibold">
+                        Admin
+                      </p>
+                    ) : (
+                      <button>
+                        <FaUserFriends
+                          onClick={() => addRole(item)}
+                          size={40}
+                          className="text-formTextColor hover:text-footerBgColorThree duration-300"
+                        />
+                      </button>
+                    )}
                   </td>
                   <td>
                     <button>
