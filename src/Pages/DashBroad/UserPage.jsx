@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { FaTrash, FaUserFriends } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const UserPage = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: users = [] } = useQuery({
+  const { refetch, data: users = [] } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
       const response = await axiosSecure.get('/users');
@@ -14,7 +15,30 @@ const UserPage = () => {
   });
 
   const deleteUser = (id) => {
-    console.log(id);
+    Swal.fire({
+      title: 'Are you sure? Delete this user?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#D1A054',
+      cancelButtonColor: '#151515',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Your user has been deleted.',
+          icon: 'success',
+        });
+
+        axiosSecure
+          .delete(`/users/${id}`)
+          .then((response) => {
+            console.log(response);
+            refetch();
+          })
+          .catch((error) => console.log(error));
+      }
+    });
   };
 
   const addRole = (id) => {
