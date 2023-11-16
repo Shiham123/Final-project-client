@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AppContext } from '../Context/context';
 import { Navigate, useLocation } from 'react-router-dom';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const PrivateRoute = ({ children }) => {
   const { user, isLoading } = useContext(AppContext);
@@ -15,7 +15,7 @@ const PrivateRoute = ({ children }) => {
 };
 
 PrivateRoute.propTypes = {
-  children: Proptypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default PrivateRoute;
