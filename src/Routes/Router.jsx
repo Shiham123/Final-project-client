@@ -15,6 +15,12 @@ import CartPage from '../Pages/DashBroad/CartPage';
 import ManageItemPage from '../Pages/DashBroad/ManageItemPage';
 import BookingPage from '../Pages/DashBroad/BookingPage';
 import UserPage from '../Pages/DashBroad/UserPage';
+import UserHome from '../Pages/DashBroad/userPage/UserHome';
+import Reservation from '../Pages/DashBroad/userPage/reservation';
+import UserPayment from '../Pages/DashBroad/userPage/UserPayment';
+import UserReview from '../Pages/DashBroad/userPage/UserReview';
+import UserBooking from '../Pages/DashBroad/userPage/UserBooking';
+import UserCart from '../Pages/DashBroad/userPage/UserCart';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +62,14 @@ const router = createBrowserRouter([
       { path: 'items', element: <ManageItemPage /> },
       { path: 'booking', element: <BookingPage /> },
       { path: 'user', element: <UserPage /> },
+      // user panel link
+
+      { path: 'userHome', element: <UserHome /> },
+      { path: 'reservation', element: <Reservation /> },
+      { path: 'payment', element: <UserPayment /> },
+      { path: 'userCart', element: <UserCart /> },
+      { path: 'review', element: <UserReview /> },
+      { path: 'booking', element: <UserBooking /> },
     ],
   },
 ]);
