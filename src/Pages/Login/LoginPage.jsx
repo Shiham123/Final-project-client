@@ -64,11 +64,12 @@ const LoginPage = () => {
   const googleLogIn = () => {
     signInGoogle()
       .then((result) => {
-        console.log(result);
+        console.log(result.user);
 
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
+          url: result.user?.photoURL,
         };
         axiosPublic
           .post('/users', userInfo)

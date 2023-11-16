@@ -8,11 +8,15 @@ import {
 import { BsStar } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import { FcMenu } from 'react-icons/fc';
+import { Helmet } from 'react-helmet-async';
 
 const UserPanelLayout = () => {
   return (
     <>
       <div className="w-64 min-h-screen bg-formTextColor">
+        <Helmet>
+          <title>Bistro || User panel</title>
+        </Helmet>
         <div className="px-8 my-12">
           <h1 className="font-cinzel font-[900] text-[23px] text-footerBgColorThree">
             BISTRO BOSS

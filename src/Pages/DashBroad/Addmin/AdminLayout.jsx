@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { FaBook, FaHome, FaList, FaUserFriends } from 'react-icons/fa';
 import { FcMenu } from 'react-icons/fc';
 import { ImSpoonKnife } from 'react-icons/im';
@@ -7,6 +8,9 @@ const AdminLayout = () => {
   return (
     <>
       <div className="w-64 min-h-screen bg-formTextColor">
+        <Helmet>
+          <title>Bistro || Admin panel</title>
+        </Helmet>
         <div className="px-8 my-12">
           <h1 className="font-cinzel font-[900] text-[23px] text-footerBgColorThree">
             BISTRO BOSS
