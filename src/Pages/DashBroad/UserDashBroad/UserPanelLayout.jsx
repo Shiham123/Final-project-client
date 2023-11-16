@@ -5,8 +5,9 @@ import {
   FaUserFriends,
   FaWallet,
 } from 'react-icons/fa';
-import { Bs0SquareFill, BsStar } from 'react-icons/bs';
+import { BsStar } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
+import { FcMenu } from 'react-icons/fc';
 
 const UserPanelLayout = () => {
   return (
@@ -129,6 +130,23 @@ const UserPanelLayout = () => {
                 <FaHome size={40} />
                 <p className="font-cinzel font-semibold text-[16px] uppercase">
                   Home
+                </p>
+              </div>
+            </NavLink>
+          </li>
+
+          {/* menu */}
+          <li>
+            <NavLink
+              to="/menu"
+              className={({ isActive }) =>
+                isActive ? 'text-white' : 'text-footerBgColorThree'
+              }
+            >
+              <div className="flex justify-start items-center gap-4 py-4">
+                <FcMenu size={40} />
+                <p className="font-cinzel font-semibold text-[16px] uppercase">
+                  Menu
                 </p>
               </div>
             </NavLink>

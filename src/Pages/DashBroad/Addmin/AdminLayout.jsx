@@ -1,4 +1,5 @@
 import { FaBook, FaHome, FaList, FaUserFriends } from 'react-icons/fa';
+import { FcMenu } from 'react-icons/fc';
 import { ImSpoonKnife } from 'react-icons/im';
 import { NavLink } from 'react-router-dom';
 
@@ -107,6 +108,22 @@ const AdminLayout = () => {
                 <FaHome size={40} />
                 <p className="font-cinzel font-semibold text-[16px] uppercase">
                   Home
+                </p>
+              </div>
+            </NavLink>
+          </li>
+          {/* menu */}
+          <li>
+            <NavLink
+              to="/menu"
+              className={({ isActive }) =>
+                isActive ? 'text-white' : 'text-footerBgColorThree'
+              }
+            >
+              <div className="flex justify-start items-center gap-4 py-4">
+                <FcMenu size={40} />
+                <p className="font-cinzel font-semibold text-[16px] uppercase">
+                  Menu
                 </p>
               </div>
             </NavLink>
