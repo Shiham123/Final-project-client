@@ -65,17 +65,18 @@ const LoginPage = () => {
     signInGoogle()
       .then((result) => {
         console.log(result.user);
+        navigate('/');
 
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
           url: result.user?.photoURL,
         };
+
         axiosPublic
           .post('/users', userInfo)
           .then((response) => {
             console.log(response.data);
-            navigate('/');
           })
           .catch((error) => console.log(error));
       })
