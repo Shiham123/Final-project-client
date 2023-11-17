@@ -4,26 +4,47 @@ import { useForm } from 'react-hook-form';
 import { FaUtensils } from 'react-icons/fa';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { useRef } from 'react';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const imgHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const imgHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
+
 const AddProduct = () => {
   const { register, handleSubmit } = useForm();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const formRef = useRef();
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     const imgFile = { image: data.image[0] };
-    const response = axiosPublic
+    axiosPublic
       .post(imgHostingApi, imgFile, {
         headers: {
           'content-type': 'multipart/form-data',
         },
       })
       .then((response) => {
-        console.log(response.data.data.display_url);
+        if (response.data.success) {
+          const menuItem = {
+            name: data.name,
+            recipe: data.recipe,
+            price: parseFloat(data.price),
+            category: data.category,
+            image: response.data.data.display_url,
+          };
+          axiosSecure
+            .post('/menu', menuItem)
+            .then((response) => {
+              if (response.data.acknowledged) {
+                Swal.fire(`${data.name} is added to server database`);
+              }
+            })
+            .catch((error) => console.log(error));
+        }
       })
       .catch((error) => console.log(error));
+
     formRef.current.reset();
   };
   return (
