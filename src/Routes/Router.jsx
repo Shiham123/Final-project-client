@@ -21,6 +21,7 @@ import UserPayment from '../Pages/DashBroad/userPage/UserPayment';
 import UserReview from '../Pages/DashBroad/userPage/UserReview';
 import UserBooking from '../Pages/DashBroad/userPage/UserBooking';
 import AddProduct from '../Pages/DashBroad/AddProduct';
+import AdminRoute from '../Routes/AdminRoute';
 
 const router = createBrowserRouter([
   {
@@ -59,12 +60,40 @@ const router = createBrowserRouter([
     children: [
       // admin panal link
       { path: 'home', element: <DashBroadPage /> },
-      { path: 'cart', element: <AddProduct /> },
-      { path: 'items', element: <ManageItemPage /> },
-      { path: 'booking', element: <BookingPage /> },
-      { path: 'user', element: <UserPage /> },
-      // user panel link
+      {
+        path: 'cart',
+        element: (
+          <AdminRoute>
+            <AddProduct />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'items',
+        element: (
+          <AdminRoute>
+            <ManageItemPage />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'booking',
+        element: (
+          <AdminRoute>
+            <BookingPage />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'user',
+        element: (
+          <AdminRoute>
+            <UserPage />
+          </AdminRoute>
+        ),
+      },
 
+      // user panel link
       { path: 'userHome', element: <UserHome /> },
       { path: 'reservation', element: <Reservation /> },
       { path: 'payment', element: <UserPayment /> },

@@ -36,6 +36,7 @@ const AddProduct = () => {
           axiosSecure
             .post('/menu', menuItem)
             .then((response) => {
+              console.log(response.data);
               if (response.data.acknowledged) {
                 Swal.fire(`${data.name} is added to server database`);
               }
