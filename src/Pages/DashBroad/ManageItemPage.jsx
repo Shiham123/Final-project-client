@@ -2,9 +2,46 @@ import { Helmet } from 'react-helmet-async';
 import SectionTitle from '../../SubSection/SectionTitle';
 import useJson from '../../Hooks/useJson';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const ManageItemPage = () => {
-  const { menuData } = useJson();
+  const { menuData, refetch } = useJson();
+  const axiosSecure = useAxiosSecure();
+
+  const editFood = (id) => {
+    console.log(id);
+  };
+
+  // Delete method
+  const deleteFood = (id) => {
+    Swal.fire({
+      title: 'Are you sure? Delete this food?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#D1A054',
+      cancelButtonColor: '#151515',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // here all delete method applied
+        axiosSecure
+          .delete(`/menu/${id}`)
+          .then((response) => {
+            console.log(response);
+            if (response.data.deletedCount > 0) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your food is Deleted',
+                icon: 'success',
+              });
+            }
+            refetch();
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+  };
 
   return (
     <div>
@@ -16,7 +53,7 @@ const ManageItemPage = () => {
       <div>
         <div className="overflow-x-auto">
           <table className="table">
-            {/* head */}
+            {/* table head */}
             <thead>
               <tr className="text-formTextColor font-poppins text-2xl">
                 <th>Number</th>
@@ -29,9 +66,11 @@ const ManageItemPage = () => {
               </tr>
             </thead>
             <tbody>
+              {/* map all the food item || table body */}
               {menuData.map((menu, index) => {
                 const { _id, image, price, name, category } = menu;
                 return (
+                  // table row
                   <tr className="hover py-4" key={_id}>
                     <th className="font-poppins text-xl text-footerBgColorThree font-semibold">
                       {index + 1}
@@ -54,16 +93,20 @@ const ManageItemPage = () => {
                       {category}
                     </td>
                     <td>
+                      {/* Edit button */}
                       <button>
                         <FaEdit
+                          onClick={() => editFood(_id)}
                           size={40}
                           className="text-formTextColor hover:text-footerBgColorThree duration-300"
                         />
                       </button>
                     </td>
                     <td>
+                      {/* delete button */}
                       <button>
                         <FaTrash
+                          onClick={() => deleteFood(_id)}
                           size={40}
                           className="text-formTextColor hover:text-footerBgColorThree duration-300"
                         />
