@@ -23,13 +23,14 @@ const ManageItemPage = () => {
                 <th>Image</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Category</th>
                 <th>Action</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {menuData.map((menu, index) => {
-                const { _id, image, price, name } = menu;
+                const { _id, image, price, name, category } = menu;
                 return (
                   <tr className="hover py-4" key={_id}>
                     <th className="font-poppins text-xl text-footerBgColorThree font-semibold">
@@ -47,7 +48,10 @@ const ManageItemPage = () => {
                       {name}
                     </td>
                     <td className="font-poppins text-xl text-footerBgColorThree font-semibold">
-                      {price}
+                      $ {price}
+                    </td>
+                    <td className="font-cinzel font-extrabold text-xl text-formTextColor uppercase hover:text-footerBgColorThree duration-100">
+                      {category}
                     </td>
                     <td>
                       <button>
