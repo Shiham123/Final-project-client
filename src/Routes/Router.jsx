@@ -11,7 +11,7 @@ import RegisterPage from '../Pages/Register/RegisterPage';
 import PrivateRoute from './PrivateRoute';
 import DrawerLayout from '../Layout/DrawerLayout';
 import DashBroadPage from '../Pages/DashBroad/DashBroadPage';
-import CartPage from '../Pages/DashBroad/CartPage';
+import CartPage from '../Pages/DashBroad/userPage/CartPage';
 import ManageItemPage from '../Pages/DashBroad/ManageItemPage';
 import BookingPage from '../Pages/DashBroad/BookingPage';
 import UserPage from '../Pages/DashBroad/UserPage';
@@ -20,7 +20,7 @@ import Reservation from '../Pages/DashBroad/userPage/reservation';
 import UserPayment from '../Pages/DashBroad/userPage/UserPayment';
 import UserReview from '../Pages/DashBroad/userPage/UserReview';
 import UserBooking from '../Pages/DashBroad/userPage/UserBooking';
-import UserCart from '../Pages/DashBroad/userPage/UserCart';
+import AddProduct from '../Pages/DashBroad/AddProduct';
 
 const router = createBrowserRouter([
   {
@@ -57,8 +57,9 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage />,
     children: [
+      // admin panal link
       { path: 'home', element: <DashBroadPage /> },
-      { path: 'cart', element: <CartPage /> },
+      { path: 'cart', element: <AddProduct /> },
       { path: 'items', element: <ManageItemPage /> },
       { path: 'booking', element: <BookingPage /> },
       { path: 'user', element: <UserPage /> },
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
       { path: 'userHome', element: <UserHome /> },
       { path: 'reservation', element: <Reservation /> },
       { path: 'payment', element: <UserPayment /> },
-      { path: 'userCart', element: <UserCart /> },
+      { path: 'userCart', element: <CartPage /> },
       { path: 'review', element: <UserReview /> },
       { path: 'booking', element: <UserBooking /> },
     ],
