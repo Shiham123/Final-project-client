@@ -14,7 +14,7 @@ const AdminRoute = ({ children }) => {
 
   if (user && isAdmin) return children;
 
-  <Navigate to="/login" state={{ from: location }}></Navigate>;
+  return <Navigate to="/" state={{ from: location }}></Navigate>;
 };
 
 AdminRoute.propTypes = {

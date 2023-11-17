@@ -176,7 +176,8 @@ const NavbarSection = () => {
             </h1>
             {/* Custom badge */}
             <div className="relative">
-              <NavLink to="/dashBroad/cart">
+              {/* TODO: some modify here */}
+              <NavLink to="/dashBroad">
                 <AiOutlineShoppingCart size={40} color="#EEFF25" />
                 <p className="absolute top-0 right-0 bg-black p-[2px] rounded-full text-sm font-inter">
                   {cartLength}
