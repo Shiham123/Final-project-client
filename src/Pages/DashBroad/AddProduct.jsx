@@ -2,10 +2,30 @@ import { Helmet } from 'react-helmet-async';
 import SectionTitle from '../../SubSection/SectionTitle';
 import { useForm } from 'react-hook-form';
 import { FaUtensils } from 'react-icons/fa';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import { useRef } from 'react';
 
+const imgHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const imgHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
 const AddProduct = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const axiosPublic = useAxiosPublic();
+  const formRef = useRef();
+
+  const onSubmit = async (data) => {
+    const imgFile = { image: data.image[0] };
+    const response = axiosPublic
+      .post(imgHostingApi, imgFile, {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        console.log(response.data.data.display_url);
+      })
+      .catch((error) => console.log(error));
+    formRef.current.reset();
+  };
   return (
     <div>
       <SectionTitle heading="Add Item" subHeading="---what's new!---" />
@@ -13,8 +33,8 @@ const AddProduct = () => {
         <title>Bistro project || Add Item</title>
       </Helmet>
 
-      <div className="bg-gray-400 p-4 rounded-lg">
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="bg-gray-200 p-4 rounded-lg">
+        <form onSubmit={handleSubmit(onSubmit)} ref={formRef}>
           <div className="form-control w-full my-6">
             <label className="label">
               <span className="label-text text-[#444] font-inter text-2xl">
