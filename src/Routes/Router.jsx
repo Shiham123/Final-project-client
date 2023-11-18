@@ -23,6 +23,7 @@ import UserBooking from '../Pages/DashBroad/userPage/UserBooking';
 import AddProduct from '../Pages/DashBroad/AddProduct';
 import AdminRoute from '../Routes/AdminRoute';
 import UpdateItemSection from '../Pages/DashBroad/UpdateIterm/UpdateItemSection';
+import axios from 'axios';
 
 const router = createBrowserRouter([
   {
@@ -104,14 +105,13 @@ const router = createBrowserRouter([
             <UpdateItemSection />
           </AdminRoute>
         ),
-        // TODO: it can be done in this way also
-        // loader: async ({ params }) => {
-        //   const response = await fetch(
-        //     `http://localhost:5000/menu/${params.id}`
-        //   );
-        //   const data = await response.json();
-        //   return { menuData: data };
-        // },
+        loader: async ({ params }) => {
+          const response = await axios.get(
+            `http://localhost:5000/menu/${params.id}`
+          );
+          const menuData = response.data;
+          return { menuData };
+        },
       },
 
       // user panel link
