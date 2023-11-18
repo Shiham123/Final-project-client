@@ -4,16 +4,53 @@ import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaUtensils } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+
+const imgHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const imgHostingApi = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
 
 const UpdateItemSection = () => {
   const { menuData } = useLoaderData();
-  const { name, price, category, recipe, image } = menuData;
+  const { name, price, category, recipe, _id } = menuData;
 
   const { register, handleSubmit } = useForm();
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const formRef = useRef();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const imgFile = { image: data.image[0] };
+    axiosPublic
+      .post(imgHostingApi, imgFile, {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      })
+      .then((response) => {
+        if (response.data.success) {
+          const menuItem = {
+            name: data.name,
+            recipe: data.recipe,
+            price: parseFloat(data.price),
+            category: data.category,
+            image: response.data.data.display_url,
+          };
+          axiosSecure
+            .patch(`/menu/${_id}`, menuItem)
+            .then((response) => {
+              console.log(response);
+              if (response.data.modifiedCount) {
+                Swal.fire(`${data.name} is added to server database`);
+              }
+            })
+            .catch((error) => console.log(error));
+        }
+      })
+      .catch((error) => console.log(error));
+
+    formRef.current.reset();
   };
 
   return (
@@ -97,7 +134,6 @@ const UpdateItemSection = () => {
 
           <div className="form-control w-full my-6">
             <input
-              defaultValue={image}
               {...register('image', { required: true })}
               type="file"
               className="file-input w-full max-w-xs"
