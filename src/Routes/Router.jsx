@@ -22,6 +22,7 @@ import UserReview from '../Pages/DashBroad/userPage/UserReview';
 import UserBooking from '../Pages/DashBroad/userPage/UserBooking';
 import AddProduct from '../Pages/DashBroad/AddProduct';
 import AdminRoute from '../Routes/AdminRoute';
+import UpdateItemSection from '../Pages/DashBroad/UpdateIterm/UpdateItemSection';
 
 const router = createBrowserRouter([
   {
@@ -43,12 +44,14 @@ const router = createBrowserRouter([
       { path: '/order/:category', element: <OrderPage /> },
     ],
   },
+  // Second layout
   {
     path: '/login',
     element: <SecondLayout />,
     children: [{ index: true, element: <LoginPage /> }],
   },
   { path: '/register', element: <RegisterPage /> },
+  // third layout
   {
     path: '/dashBroad',
     element: (
@@ -91,6 +94,24 @@ const router = createBrowserRouter([
             <UserPage />
           </AdminRoute>
         ),
+      },
+
+      // update item route
+      {
+        path: 'updateItem/:id',
+        element: (
+          <AdminRoute>
+            <UpdateItemSection />
+          </AdminRoute>
+        ),
+        // TODO: it can be done in this way also
+        // loader: async ({ params }) => {
+        //   const response = await fetch(
+        //     `http://localhost:5000/menu/${params.id}`
+        //   );
+        //   const data = await response.json();
+        //   return { menuData: data };
+        // },
       },
 
       // user panel link

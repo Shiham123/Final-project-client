@@ -4,14 +4,11 @@ import useJson from '../../Hooks/useJson';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const ManageItemPage = () => {
   const { menuData, refetch } = useJson();
   const axiosSecure = useAxiosSecure();
-
-  const editFood = (id) => {
-    console.log(id);
-  };
 
   // Delete method
   const deleteFood = (id) => {
@@ -94,13 +91,14 @@ const ManageItemPage = () => {
                     </td>
                     <td>
                       {/* Edit button */}
-                      <button>
-                        <FaEdit
-                          onClick={() => editFood(_id)}
-                          size={40}
-                          className="text-formTextColor hover:text-footerBgColorThree duration-300"
-                        />
-                      </button>
+                      <Link to={`/dashBroad/updateItem/${_id}`}>
+                        <button>
+                          <FaEdit
+                            size={40}
+                            className="text-formTextColor hover:text-footerBgColorThree duration-300"
+                          />
+                        </button>
+                      </Link>
                     </td>
                     <td>
                       {/* delete button */}
