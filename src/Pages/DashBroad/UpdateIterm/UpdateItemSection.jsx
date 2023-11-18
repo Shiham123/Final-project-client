@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import SectionTitle from '../../../SubSection/SectionTitle';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const UpdateItemSection = () => {
   // TODO: must be import as object because in router i am return as a object
@@ -10,12 +10,18 @@ const UpdateItemSection = () => {
   // console.log(menuData);
 
   const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
+  const [menuData, setMenuData] = useState();
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/menu/${id}`)
-      .then((response) => console.log(response))
+    axiosSecure
+      .get(`/menu/${id}`)
+      .then((response) => {
+        console.log(response);
+        setMenuData(response.data);
+      })
       .catch((error) => console.log(error));
-  }, [id]);
+  }, [id, axiosSecure]);
 
   return (
     <div>
