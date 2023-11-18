@@ -15,7 +15,7 @@ const UpdateItemSection = () => {
   const { menuData } = useLoaderData();
   const { name, price, category, recipe, _id } = menuData;
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const formRef = useRef();
@@ -42,6 +42,7 @@ const UpdateItemSection = () => {
             .then((response) => {
               console.log(response);
               if (response.data.modifiedCount) {
+                reset();
                 Swal.fire(`${data.name} is added to server database`);
               }
             })
