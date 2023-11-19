@@ -109,7 +109,7 @@ const UserPanelLayout = () => {
 
           <li className="pb-12">
             <NavLink
-              to="/dashBroad/booking"
+              to="/dashBroad/userBooking"
               className={({ isActive }) =>
                 isActive ? 'text-white' : 'text-footerBgColorThree'
               }

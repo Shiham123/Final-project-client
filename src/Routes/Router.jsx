@@ -120,7 +120,7 @@ const router = createBrowserRouter([
       { path: 'payment', element: <UserPayment /> },
       { path: 'userCart', element: <CartPage /> },
       { path: 'review', element: <UserReview /> },
-      { path: 'booking', element: <UserBooking /> },
+      { path: 'userBooking', element: <UserBooking /> },
     ],
   },
 ]);
