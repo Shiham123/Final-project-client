@@ -5,10 +5,20 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const ManageItemPage = () => {
   const { menuData, refetch } = useJson();
   const axiosSecure = useAxiosSecure();
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const itemsPerPage = 10;
+  const numberOfPage = Math.ceil(menuData.length / itemsPerPage);
+  const pages = [...Array(numberOfPage).keys()];
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const itemsPerPageDisplay = menuData.slice(startIndex, endIndex);
 
   // Delete method
   const deleteFood = (id) => {
@@ -40,6 +50,15 @@ const ManageItemPage = () => {
     });
   };
 
+  const nextPage = () => {
+    if (currentPage < itemsPerPageDisplay.length - 2)
+      setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    if (currentPage > 0) setCurrentPage(currentPage - 1);
+  };
+
   return (
     <div>
       <SectionTitle heading="Manage All Items" subHeading="--- hurry up ---" />
@@ -64,13 +83,14 @@ const ManageItemPage = () => {
             </thead>
             <tbody>
               {/* map all the food item || table body */}
-              {menuData.map((menu, index) => {
+              {itemsPerPageDisplay.map((menu, index) => {
                 const { _id, image, price, name, category } = menu;
+                const displayIndex = startIndex + index + 1;
                 return (
                   // table row
                   <tr className="hover py-4" key={_id}>
                     <th className="font-poppins text-xl text-footerBgColorThree font-semibold">
-                      {index + 1}
+                      {displayIndex}
                     </th>
                     <td className="font-poppins text-xl text-footerBgColorThree font-semibold">
                       <img
@@ -115,6 +135,38 @@ const ManageItemPage = () => {
               })}
             </tbody>
           </table>
+        </div>
+
+        <div className="flex justify-center items-center">
+          <button
+            onClick={nextPage}
+            className="border-2 border-footerBgColorThree duration-100 p-4 m-2 rounded-lg hover:bg-footerBgColorThree hover:text-formTextColor"
+          >
+            Next
+          </button>
+          {pages.map((item, index) => {
+            return (
+              <div key={index}>
+                <button
+                  onClick={() => {
+                    setCurrentPage(item);
+                  }}
+                  className={`${
+                    currentPage === item &&
+                    'bg-footerBgColorThree text-formTextColor'
+                  } border-2 border-footerBgColorThree duration-100 p-4 m-2 rounded-lg`}
+                >
+                  {index + 1}
+                </button>
+              </div>
+            );
+          })}
+          <button
+            onClick={prevPage}
+            className="border-2 border-footerBgColorThree duration-100 p-4 m-2 rounded-lg hover:bg-footerBgColorThree hover:text-formTextColor"
+          >
+            Prev
+          </button>
         </div>
       </div>
     </div>
