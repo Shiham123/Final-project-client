@@ -37,9 +37,13 @@ const CheckOutForm = () => {
       type: 'card',
       card,
     });
-    error
-      ? (console.log(error), setError(error.message))
-      : console.log('payment method', paymentMethod);
+
+    if (error) {
+      console.log(error);
+      setError(error.message);
+    } else {
+      console.log('payment method', paymentMethod);
+    }
 
     /**
      * ! payment intent
@@ -62,6 +66,19 @@ const CheckOutForm = () => {
       if (paymentIntent.status === 'succeeded') {
         // console.log('transaction id ', paymentIntent.id);
         setTransactionId(paymentIntent.id);
+
+        const orderInfo = {
+          email: user.email,
+          price: totalPrice,
+          date: new Date(),
+          transactionId: paymentIntent.id,
+          cartIds: cart.map((item) => item._id),
+          menuItemIds: cart.map((item) => item.menuId),
+          status: 'pending',
+        };
+
+        const response = await axiosSecure.post('/payments', orderInfo);
+        console.log('payment info', response.data);
       }
     }
   };
