@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useCart from '../../../Hooks/useCart';
 import { AppContext } from '../../../Context/context';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CheckOutForm = () => {
   const [error, setError] = useState('');
@@ -11,16 +13,19 @@ const CheckOutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const { user } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   useEffect(() => {
-    axiosSecure
-      .post('/create-payment-intent', { price: totalPrice })
-      .then((response) => setClientSecret(response.data.clientSecret))
-      .catch((error) => console.log(error));
+    if (totalPrice > 0) {
+      axiosSecure
+        .post('/create-payment-intent', { price: totalPrice })
+        .then((response) => setClientSecret(response.data.clientSecret))
+        .catch((error) => console.log(error));
+    }
   }, [axiosSecure, totalPrice]);
 
   const handleSubmit = async (event) => {
@@ -62,9 +67,7 @@ const CheckOutForm = () => {
     if (confirmError) {
       console.log('confirm error', confirmError);
     } else {
-      // console.log('payment intent', paymentIntent);
       if (paymentIntent.status === 'succeeded') {
-        // console.log('transaction id ', paymentIntent.id);
         setTransactionId(paymentIntent.id);
 
         const orderInfo = {
@@ -79,6 +82,17 @@ const CheckOutForm = () => {
 
         const response = await axiosSecure.post('/payments', orderInfo);
         console.log('payment info', response.data);
+        refetch();
+        if (response.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Thank you for the payment your food',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate('/dashBroad/paymentHistory');
+        }
       }
     }
   };
@@ -110,6 +124,9 @@ const CheckOutForm = () => {
           Your transaction ID:{' '}
           <span className="font-semibold">{transactionId}</span>
         </p>
+      )}
+      {error && (
+        <p className="font-poppins text-2xl text-red-500">{error.message}</p>
       )}
     </form>
   );

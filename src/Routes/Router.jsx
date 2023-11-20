@@ -24,6 +24,7 @@ import AddProduct from '../Pages/DashBroad/AddProduct';
 import AdminRoute from '../Routes/AdminRoute';
 import UpdateItemSection from '../Pages/DashBroad/UpdateIterm/UpdateItemSection';
 import axios from 'axios';
+import PaymentHistory from '../Pages/DashBroad/userPage/PaymentHistory';
 
 const router = createBrowserRouter([
   {
@@ -121,6 +122,7 @@ const router = createBrowserRouter([
       { path: 'userCart', element: <CartPage /> },
       { path: 'review', element: <UserReview /> },
       { path: 'userBooking', element: <UserBooking /> },
+      { path: 'paymentHistory', element: <PaymentHistory /> },
     ],
   },
 ]);
