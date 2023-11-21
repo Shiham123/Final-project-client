@@ -73,12 +73,10 @@ const LoginPage = () => {
           url: result.user?.photoURL,
         };
 
-        axiosPublic
-          .post('/users', userInfo)
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => console.log(error));
+        axiosPublic.post('/users', userInfo).then((response) => {
+          console.log(response.data);
+          navigate('/');
+        });
       })
       .catch((error) => console.log(error));
   };

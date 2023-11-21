@@ -64,7 +64,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       // admin panal link
-      { path: 'home', element: <DashBroadPage /> },
+      {
+        path: 'home',
+        element: (
+          <AdminRoute>
+            <DashBroadPage />
+          </AdminRoute>
+        ),
+      },
       {
         path: 'cart',
         element: (

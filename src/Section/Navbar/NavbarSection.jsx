@@ -6,6 +6,7 @@ import { AppContext } from '../../Context/context';
 
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import useCart from '../../Hooks/useCart';
+import useAdmin from '../../Hooks/useAdmin';
 
 const NavbarSection = () => {
   const { user, logOut } = useContext(AppContext);
@@ -13,6 +14,8 @@ const NavbarSection = () => {
 
   const [cart] = useCart();
   const cartLength = cart?.length;
+
+  const [isAdmin] = useAdmin();
 
   const logoutUser = () => {
     logOut()
@@ -176,8 +179,9 @@ const NavbarSection = () => {
             </h1>
             {/* Custom badge */}
             <div className="relative">
-              {/* TODO: some modify here */}
-              <NavLink to="/dashBroad">
+              <NavLink
+                to={`${isAdmin ? '/dashBroad/home' : '/dashBroad/userHome'}`}
+              >
                 <AiOutlineShoppingCart size={40} color="#EEFF25" />
                 <p className="absolute top-0 right-0 bg-black p-[2px] rounded-full text-sm font-inter">
                   {cartLength}
